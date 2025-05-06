@@ -1,13 +1,12 @@
-# Step 1: Build the app
-FROM maven:3.9.5-eclipse-temurin-17 AS build
+# Step 1: Use JDK 21 for build
+FROM eclipse-temurin:21 AS build
 WORKDIR /app
 COPY . .
 RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
-# Step 2: Run the app with a smaller JDK base image
-FROM eclipse-temurin:17-jdk
+# Step 2: Use JDK 21 runtime for running the app
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
-EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
