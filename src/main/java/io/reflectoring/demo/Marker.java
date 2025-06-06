@@ -15,6 +15,8 @@ public class Marker {
   private String jobType;
   private String duration;
   private String salary;
+  private String phone;
+
 
     public String getSalary() {
         return salary;
@@ -22,6 +24,15 @@ public class Marker {
 
     public void setSalary(String salary) {
         this.salary = salary;
+    }
+
+    public String getPhone()
+    {
+        return phone;
+    }
+    public String SetPhone(String phone)
+    {
+        return this.phone=phone;
     }
 
     public double getLat() {
